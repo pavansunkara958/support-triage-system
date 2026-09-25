@@ -1,2 +1,2 @@
-{"ts": 0.0, "trace_id": "abc5f500c86c4b4d", "conversation_id": "guardrail-demo-2", "turn": 1, "event": "user_message", "text": "My card is 4539 1488 0343 6467, please charge it manually."}
-{"ts": 0.005, "trace_id": "abc5f500c86c4b4d", "conversation_id": "guardrail-demo-2", "turn": 1, "event": "guardrail_tripwire", "guardrail": "input", "detail": {"layer": "deterministic", "findings": [{"category": "card-number", "detail": "PAN detected"}], "message": "card-number"}}
+{"ts": 0.0, "trace_id": "9d9daad4100643ee", "conversation_id": "guardrail-demo-2", "turn": 1, "event": "user_message", "text": "My card is 4539 1488 0343 6467, please charge it manually."}
+{"ts": 0.006, "trace_id": "9d9daad4100643ee", "conversation_id": "guardrail-demo-2", "turn": 1, "event": "guardrail_tripwire", "guardrail": "input", "detail": {"layer": "deterministic", "findings": [{"category": "card-number", "detail": "PAN detected"}], "message": "card-number"}}

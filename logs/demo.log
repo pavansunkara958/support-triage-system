@@ -2,21 +2,21 @@
 ============================================================================
 MULTI-TURN DEMO — one conversation, three specialists
 ============================================================================
-  provider=gateway  model=llama-3.3-70b-versatile  dashboard_tracing=off  conversation_id=demo-conv-001
+  provider=gateway  model=openai/gpt-oss-120b  dashboard_tracing=off  conversation_id=demo-conv-001
   Watch the handoffs: the subject changes twice and routing follows.
 
 ============================================================================
 TURN 1 — expecting billing
 ============================================================================
   customer: Hi, I was charged twice on my March invoice. My email is dana.k@northwind.example
-{"ts": 0.0, "trace_id": "11ecf01641324a10", "conversation_id": "demo-conv-001", "turn": 1, "event": "user_message", "text": "Hi, I was charged twice on my March invoice. My email is dana.k@northwind.example"}
+{"ts": 0.0, "trace_id": "793f337668154f75", "conversation_id": "demo-conv-001", "turn": 1, "event": "user_message", "text": "Hi, I was charged twice on my March invoice. My email is dana.k@northwind.example"}
 Traceback (most recent call last):
   File "<frozen runpy>", line 203, in _run_module_as_main
   File "<frozen runpy>", line 88, in _run_code
-  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 254, in <module>
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 260, in <module>
     main()
     ~~~~^^
-  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 241, in main
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 247, in main
     asyncio.run(run_demo())
     ~~~~~~~~~~~^^^^^^^^^^^^
   File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 205, in run
@@ -88,4 +88,4 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/Users/pavankumarsunkara/FDE/support-triage-system/.venv/lib/python3.14/site-packages/openai/_base_client.py", line 1837, in request
     raise self._make_status_error_from_response(err.response) from None
-openai.AuthenticationError: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+openai.NotFoundError: Error code: 404 - {'error': {'message': 'The model `gpt-oss-120b` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'code': 'model_not_found'}}

@@ -164,11 +164,17 @@ async def run_guardrail_demo() -> None:
 
 
 async def run_review() -> None:
-    if PROVIDER != "openai":
-        raise SystemExit(
-            "\nThe Responses API workflow needs PROVIDER=openai.\n"
-            "Gateways implement /v1/chat/completions but not /v1/responses.\n")
+    """Responses API workflow.
 
+    No provider gate. This used to refuse unless PROVIDER=openai, on the
+    assumption that gateways serve only /v1/chat/completions — an assumption
+    that was true when written and is not now: Groq serves /v1/responses, and
+    preflight confirms it per-endpoint.
+
+    Guessing at capability from a provider name is how a working feature ends
+    up disabled by a stale comment. Let the endpoint answer, and fail with its
+    actual error if it cannot.
+    """
     rule("RESPONSES API WORKFLOW — conversation QA review")
     transcripts = [
         "Customer: I was charged twice in March.\n"

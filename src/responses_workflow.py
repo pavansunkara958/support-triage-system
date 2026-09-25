@@ -27,7 +27,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from .config import MODEL_SPECIALIST
+from .config import GATEWAY_MODEL, MODEL_SPECIALIST
 
 SYSTEM = """You are a QA reviewer for a customer-support team.
 
@@ -63,11 +63,26 @@ REVIEW_SCHEMA: dict[str, Any] = {
 
 async def review_batch(transcripts: list[str],
                        model: str | None = None) -> list[dict]:
-    """Review transcripts in sequence, threading state server-side."""
-    from openai import AsyncOpenAI
+    """Review transcripts in sequence, threading state server-side.
 
-    client = AsyncOpenAI()
-    model = model or MODEL_SPECIALIST
+    Uses the CONFIGURED client, not a bare `AsyncOpenAI()`. The original
+    version hard-coded a direct OpenAI client on the assumption that only
+    OpenAI serves `/v1/responses` — which stopped being true. A gateway that
+    does serve it would still have been sent to api.openai.com and failed with
+    a confusing auth error.
+
+    Capability belongs to the endpoint, not to a provider name. Ask
+    `scripts/preflight` what an endpoint supports rather than inferring it.
+    """
+    from .config import PROVIDER, _gateway_client
+
+    if PROVIDER == "gateway":
+        client = _gateway_client()
+        model = model or GATEWAY_MODEL or MODEL_SPECIALIST
+    else:
+        from openai import AsyncOpenAI
+        client = AsyncOpenAI()
+        model = model or MODEL_SPECIALIST
 
     reviews: list[dict] = []
     previous_id: str | None = None

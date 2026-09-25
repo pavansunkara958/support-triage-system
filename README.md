@@ -195,3 +195,14 @@ scripts/
 docs/                   design, architecture, sample interactions, screenshots
 logs/                   per-conversation JSONL traces
 ```
+
+## Run environment
+
+Run against Groq (`openai/gpt-oss-120b`) via `PROVIDER=gateway`. Preflight
+confirmed all four capabilities including `/v1/responses`, so **six of the
+seven components are exercised live**: router, handoffs, all three guardrail
+layers, stateful sessions, the Responses API workflow, and tracing.
+
+The one gap is **OpenAI dashboard screenshots** — a gateway key cannot upload
+traces. The tracing evidence for this run is the structured JSONL in `logs/`,
+which `scripts/build_docs.py` renders into `docs/sample-interactions.md`.

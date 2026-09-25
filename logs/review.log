@@ -1,4 +1,40 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 260, in <module>
+    main()
+    ~~~~^^
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 251, in main
+    asyncio.run(run_review())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/main.py", line 197, in run_review
+    reviews = await review_batch(transcripts)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/src/responses_workflow.py", line 113, in review_batch
+    response = await client.responses.create(**kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/.venv/lib/python3.14/site-packages/openai/resources/responses/responses.py", line 2936, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<49 lines>...
+    )
+    ^
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/.venv/lib/python3.14/site-packages/openai/_base_client.py", line 2052, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/pavankumarsunkara/FDE/support-triage-system/.venv/lib/python3.14/site-packages/openai/_base_client.py", line 1837, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': "Field 'previous_response_id' is not supported", 'type': 'invalid_request_error'}}
 
-The Responses API workflow needs PROVIDER=openai.
-Gateways implement /v1/chat/completions but not /v1/responses.
-
+============================================================================
+RESPONSES API WORKFLOW — conversation QA review
+============================================================================
