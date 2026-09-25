@@ -1,0 +1,5 @@
+
+Missing OPENAI_API_KEY.
+Either set it in .env, or use a free gateway:
+  PROVIDER=gateway  (see .env.example)
+
