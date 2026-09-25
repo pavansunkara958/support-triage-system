@@ -1,4 +1,0 @@
-
-The Responses API workflow needs PROVIDER=openai.
-Gateways implement /v1/chat/completions but not /v1/responses.
-
