@@ -9,7 +9,7 @@ MULTI-TURN DEMO — one conversation, three specialists
 TURN 1 — expecting billing
 ============================================================================
   customer: Hi, I was charged twice on my March invoice. My email is dana.k@northwind.example
-{"ts": 0.0, "trace_id": "31d1f49b301241b6", "conversation_id": "demo-conv-001", "turn": 1, "event": "user_message", "text": "Hi, I was charged twice on my March invoice. My email is dana.k@northwind.example"}
+{"ts": 0.0, "trace_id": "11ecf01641324a10", "conversation_id": "demo-conv-001", "turn": 1, "event": "user_message", "text": "Hi, I was charged twice on my March invoice. My email is dana.k@northwind.example"}
 Traceback (most recent call last):
   File "<frozen runpy>", line 203, in _run_module_as_main
   File "<frozen runpy>", line 88, in _run_code
